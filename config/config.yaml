@@ -1,0 +1,15 @@
+niches:
+  seyahat:
+    sources:
+      - google_trends
+      - twitter
+    keywords:
+      - tatil
+      - gezilecek yerler
+  teknoloji:
+    sources:
+      - google_trends
+      - twitter
+    keywords:
+      - yapay zeka
+      - teknoloji trendleri
