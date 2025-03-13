@@ -2,14 +2,40 @@ niches:
   seyahat:
     sources:
       - google_trends
-      - twitter
+      - reddit
+      - instagram
+      - youtube
+      - pinterest
     keywords:
       - tatil
       - gezilecek yerler
   teknoloji:
     sources:
       - google_trends
-      - twitter
+      - hackernews
+      - reddit
+      - youtube
+      - news
     keywords:
       - yapay zeka
       - teknoloji trendleri
+  sosyal:
+    sources:
+      - instagram
+      - reddit
+      - twitter
+      - pinterest
+      - linkedin
+    keywords:
+      - influencer
+      - sosyal medya
+  alışveriş:
+    sources:
+      - amazon
+      - ebay
+      - otto
+      - google_trends
+      - pinterest
+    keywords:
+      - indirim
+      - trending ürünler

@@ -6,3 +6,4 @@ pandas>=1.4.0
 numpy>=1.21.0
 pyyaml>=6.0
 pytrends>=4.8.0
+python-dotenv>=1.0.0

@@ -21,24 +21,106 @@ class OutputManager:
             # İstatistik tablosu
             stats_table = Table(title="İstatistikler")
             stats_table.add_column("Anahtar Kelime", style="cyan")
-            stats_table.add_column("Ortalama", style="green")
-            stats_table.add_column("Std Sapma", style="yellow")
-            stats_table.add_column("Trend", style="magenta")
+            stats_table.add_column("Kaynak", style="magenta")
+            stats_table.add_column("Metrik", style="green")
+            stats_table.add_column("Değer", style="yellow")
 
             for keyword, stat in results["stats"].items():
                 if "mean" in stat:  # Google Trends istatistikleri
                     stats_table.add_row(
                         keyword,
-                        f"{stat['mean']:.2f}",
-                        f"{stat['std']:.2f}",
+                        "Google Trends",
+                        "Ortalama",
+                        f"{stat['mean']:.2f}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Google Trends",
+                        "Std Sapma",
+                        f"{stat['std']:.2f}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Google Trends",
+                        "Trend",
                         stat["trend"]
                     )
                 elif "tweet_count" in stat:  # Twitter istatistikleri
                     stats_table.add_row(
                         keyword,
-                        f"{stat['tweet_count']} tweets",
-                        "N/A",
-                        f"Engagement: {stat['engagement']:.1f}"
+                        "Twitter",
+                        "Tweet Sayısı",
+                        f"{stat['tweet_count']}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Twitter",
+                        "Etkileşim",
+                        f"{stat['engagement']:.1f}"
+                    )
+                elif "post_count" in stat and "avg_score" in stat:  # Reddit istatistikleri
+                    stats_table.add_row(
+                        keyword,
+                        "Reddit",
+                        "Post Sayısı",
+                        f"{stat['post_count']}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Reddit",
+                        "Ort. Skor",
+                        f"{stat['avg_score']:.1f}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Reddit",
+                        "Etkileşim İndeksi",
+                        f"{stat['engagement_index']:.1f}"
+                    )
+                elif "hit_count" in stat:  # HackerNews istatistikleri
+                    stats_table.add_row(
+                        keyword,
+                        "HackerNews",
+                        "Hit Sayısı",
+                        f"{stat['hit_count']}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "HackerNews",
+                        "Ort. Puanlar",
+                        f"{stat['avg_points']:.1f}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "HackerNews",
+                        "Teknoloji İlgisi",
+                        f"{stat['tech_relevance']:.1f}"
+                    )
+                elif "post_count" in stat and "avg_likes" in stat:  # Instagram istatistikleri
+                    stats_table.add_row(
+                        keyword,
+                        "Instagram",
+                        "Post Sayısı",
+                        f"{stat['post_count']}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Instagram",
+                        "Ort. Beğeni",
+                        f"{stat['avg_likes']:.1f}"
+                    )
+                    stats_table.add_row(
+                        keyword,
+                        "Instagram",
+                        "Etkileşim Oranı",
+                        f"{stat['engagement_rate']:.1f}"
+                    )
+                elif "error" in stat:  # Hata durumları
+                    stats_table.add_row(
+                        keyword,
+                        "Error",
+                        "Hata",
+                        stat["error"]
                     )
 
             self.console.print(stats_table)
