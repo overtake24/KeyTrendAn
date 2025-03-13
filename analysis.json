@@ -1,0 +1,24 @@
+{
+  "stats": {
+    "tatil": {
+      "tweet_count": 5,
+      "engagement": 12.5
+    },
+    "gezilecek yerler": {
+      "tweet_count": 5,
+      "engagement": 12.5
+    }
+  },
+  "predictions": {
+    "tatil": [
+      104.50000000000001,
+      114.0,
+      123.5
+    ],
+    "gezilecek yerler": [
+      104.50000000000001,
+      114.0,
+      123.5
+    ]
+  }
+}

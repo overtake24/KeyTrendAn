@@ -11,5 +11,7 @@ def get_scraper(source_config):
     elif source_type == "twitter":
         return TwitterScraper(source_config)
     else:
-        # Kullanıcı tanımlı kaynak için basit scraper
-        return BaseScraper(source_config)
+        # Kullanıcı tanımlı kaynaklar için özel bir scraper sınıfı gerekiyor
+        # BaseScraper soyut bir sınıf olduğu için doğrudan örneği oluşturulamaz
+        # Geçici çözüm olarak TwitterScraper kullanabiliriz
+        return TwitterScraper(source_config)

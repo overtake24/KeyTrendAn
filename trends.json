@@ -3,54 +3,36 @@
     "keyword": "tatil",
     "source": "google_trends",
     "data": {
-      "day_0": 50,
-      "day_1": 55,
-      "day_2": 60,
-      "day_3": 65,
-      "day_4": 70,
-      "day_5": 75,
-      "day_6": 80,
-      "day_7": 85,
-      "day_8": 90,
-      "day_9": 95
+      "error": "The request failed: Google returned a response with code 429"
     }
   },
   {
     "keyword": "gezilecek yerler",
     "source": "google_trends",
     "data": {
-      "day_0": 50,
-      "day_1": 55,
-      "day_2": 60,
-      "day_3": 65,
-      "day_4": 70,
-      "day_5": 75,
-      "day_6": 80,
-      "day_7": 85,
-      "day_8": 90,
-      "day_9": 95
+      "error": "The request failed: Google returned a response with code 429"
     }
   },
   {
     "keyword": "tatil",
     "source": "twitter",
     "data": [
-      "Tweet 0 about tatil",
-      "Tweet 1 about tatil",
-      "Tweet 2 about tatil",
-      "Tweet 3 about tatil",
-      "Tweet 4 about tatil"
+      "Örnek Tweet 0 hakkında tatil",
+      "Örnek Tweet 1 hakkında tatil",
+      "Örnek Tweet 2 hakkında tatil",
+      "Örnek Tweet 3 hakkında tatil",
+      "Örnek Tweet 4 hakkında tatil"
     ]
   },
   {
     "keyword": "gezilecek yerler",
     "source": "twitter",
     "data": [
-      "Tweet 0 about gezilecek yerler",
-      "Tweet 1 about gezilecek yerler",
-      "Tweet 2 about gezilecek yerler",
-      "Tweet 3 about gezilecek yerler",
-      "Tweet 4 about gezilecek yerler"
+      "Örnek Tweet 0 hakkında gezilecek yerler",
+      "Örnek Tweet 1 hakkında gezilecek yerler",
+      "Örnek Tweet 2 hakkında gezilecek yerler",
+      "Örnek Tweet 3 hakkında gezilecek yerler",
+      "Örnek Tweet 4 hakkında gezilecek yerler"
     ]
   }
 ]
