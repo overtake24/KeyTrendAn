@@ -7,3 +7,5 @@ numpy>=1.21.0
 pyyaml>=6.0
 pytrends>=4.8.0
 python-dotenv>=1.0.0
+playwright>=1.30.0  # Playwright ve asenkron tarayıcı otomasyonu için
+beautifulsoup4>=4.11.1  # HTML ayrıştırma için (isteğe bağlı)

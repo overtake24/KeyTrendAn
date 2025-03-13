@@ -45,14 +45,15 @@ async def _add_source(category, name, url, source_type, auth_type, auth_credenti
 def research(
         category: str = typer.Argument(..., help="Araştırılacak kategori"),
         limit: int = typer.Option(10, help="Sonuç limiti"),
-        output_file: str = typer.Option("research.json", help="Çıktı dosyası")
+        output_file: str = typer.Option("research.json", help="Çıktı dosyası"),
+        scrape_method: str = typer.Option("playwright", help="Kazıma yöntemi (playwright, api, mock)")
 ):
     """Belirtilen kategorideki kaynaklarla araştırma yap"""
     console.print(Panel(f"[bold]{category}[/bold] Kategorisi İçin Araştırma", style="blue", box=box.ROUNDED))
-    asyncio.run(_research(category, limit, output_file))
+    asyncio.run(_research(category, limit, output_file, scrape_method))
 
 
-async def _research(category, limit, output_file):
+async def _research(category, limit, output_file, scrape_method):
     try:
         async with Database() as db:
             sources = await db.get_sources_by_category(category)
@@ -62,6 +63,10 @@ async def _research(category, limit, output_file):
                     Panel(f"[yellow]Uyarı:[/yellow] '{category}' kategorisinde kaynak bulunamadı.", style="yellow",
                           box=box.ROUNDED))
                 return
+
+            # Her kaynak için scrape_method'u güncelle
+            for source in sources:
+                source["scrape_method"] = scrape_method
 
             # Konfigürasyon dosyasından anahtar kelimeleri al
             with open("config/config.yaml", "r") as f:
@@ -153,17 +158,20 @@ async def _analyze(category, keyword, days, format, output_file):
         console.print(traceback.format_exc())
 
 
+# CLI dosyasındaki scrape komutu tanımlaması şöyle olmalı:
+
 @app.command()
 def scrape(
         category: str = typer.Argument(..., help="Kazınacak kategori"),
-        output_file: str = typer.Option("trends.json", help="Çıktı dosyası")
+        output_file: str = typer.Option("trends.json", help="Çıktı dosyası"),
+        scrape_method: str = typer.Option("playwright", help="Kazıma yöntemi (playwright, api, mock)")
 ):
     """Belirtilen kategorideki trendleri kazır"""
     console.print(Panel(f"[bold]{category}[/bold] Kategorisi İçin Trend Kazıma", style="green", box=box.ROUNDED))
-    asyncio.run(_scrape(category, output_file))
+    asyncio.run(_scrape(category, output_file, scrape_method))
 
 
-async def _scrape(category, output_file):
+async def _scrape(category, output_file, scrape_method):
     try:
         # Konfigürasyon dosyasından anahtar kelimeleri ve kaynakları al
         with open("config/config.yaml", "r") as f:
@@ -189,8 +197,8 @@ async def _scrape(category, output_file):
             task = progress.add_task(f"[cyan]Kazıma işlemi: {len(source_names)} kaynak, {len(keywords)} anahtar kelime",
                                      total=len(source_names) * len(keywords))
 
-            # Basitlik için varsayılan kaynak yapılandırmaları
-            sources = [{"name": name} for name in source_names]
+            # Kaynakları yapılandır
+            sources = [{"name": name, "scrape_method": scrape_method} for name in source_names]
 
             async with Database() as db:
                 all_results = []
