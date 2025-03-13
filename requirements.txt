@@ -5,3 +5,4 @@ aiosqlite>=0.17.0
 pandas>=1.4.0
 numpy>=1.21.0
 pyyaml>=6.0
+pytrends>=4.8.0

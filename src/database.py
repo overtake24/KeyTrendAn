@@ -4,6 +4,13 @@ import asyncio
 
 
 class Database:
+    async def __aenter__(self):
+        await self.init()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.close()
+
     async def init(self):
         self.db = await aiosqlite.connect("keyword_trends.db")
         await self._create_tables()
